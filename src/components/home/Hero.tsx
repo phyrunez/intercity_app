@@ -1,4 +1,3 @@
-import MainLayout from '../MainLayout'
 
 const Hero = () => {
     return (
