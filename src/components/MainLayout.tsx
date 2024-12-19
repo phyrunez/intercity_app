@@ -40,7 +40,6 @@ const MainLayout = () => {
     }
 
     const handleChangeLocation = () => {
-        console.log("JUST CHECKING");
         setFromLocation(toLocation)
         setToLocation(fromLocation)
     }
@@ -71,7 +70,6 @@ const MainLayout = () => {
                     setBtnLoadingState(true)
                 }
             })
-
 
     }
 

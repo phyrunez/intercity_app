@@ -1,7 +1,5 @@
-// import { useState } from 'react'
 import Clock from '../../assets/clock.png'
 import LinkImg from '../../assets/link.png'
-// import toast from 'react-hot-toast'
 
 interface data {
     ride_meta: {
@@ -53,8 +51,6 @@ const convertToAMPM = (time: any) => {
 }
 
 const CompareBus = ({ rideInfo, ridesAreAvailable }: Props) => {
-    console.log("Rides", rideInfo)
-
 
     return (
         <div className="lg:mx-[85px] md:mx-[35px] mx-auto lg:w-full md:w-[100%] w-[90%] my-24 font-mulish">
