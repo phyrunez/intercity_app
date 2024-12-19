@@ -49,12 +49,12 @@ const MainLayout = () => {
         e.preventDefault()
         console.log(fromLocation, toLocation, departureDate)
 
-        setBtnLoadingState(false)
-
         if (!fromLocation || !toLocation || !departureDate) {
             toast.error("Kindly enter valid Locations and Departure Date")
             return
         }
+
+        setBtnLoadingState(false)
 
         fetchRidesData(`${API_URL}?from_city=${fromLocation}&to_city=${toLocation}&departure_date=${departureDate}`, TOKEN)
             .then(data => {
@@ -78,8 +78,8 @@ const MainLayout = () => {
     return (
         <div className='max-w-full overflow-hidden w-full'>
             <Header />
-            <div className="lg:mx-[85px] md:mx-[20px] lg:w-[90%] w-full grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 my-8 gap-y-8 justify-between lg:gap-x-64 md:gap-x-24 gap-x-12">
-                <div>
+            <div className="lg:mx-[85px] md:mx-[20px] lg:w-[90%] w-full grid lg:grid-cols-2 md:grid-cols-1 grid-cols-1 my-8 gap-y-8 justify-between lg:gap-x-64 md:gap-x-24 gap-x-12">
+                <div className='lg:mx-[3px] md:mx-auto mx-auto xl:text-start lg:text-start md:text-center text-center'>
                     <h1 className="font-mulish font-bold text-5xl w-[450px] word-spacing-[0.5rem]">
                         Buy <span className="text-indigo">cheap</span><br /> bus tickets online in Nigeria
                     </h1>
@@ -88,7 +88,7 @@ const MainLayout = () => {
                         Book bus tickets for all interstate <br /> travels in Nigeria
                     </p>
                 </div>
-                <div className="border bg-blue rounded-2xl w-[98%] mx-auto border-[#e5e7eb]">
+                <div className="border bg-blue rounded-2xl xl:w-[91%] lg:w-[100%] md:w-[70%] w-[80%] mx-auto border-[#e5e7eb]">
                     <div className="bg-blue rounded-t-2xl border-0 text-white w-full text-center py-4 font-mulish ">
                         <div className="flex gap-3 justify-center">
                             <img src={WindowImg} alt="window" width='18px' height="5px" />
@@ -113,22 +113,22 @@ const MainLayout = () => {
 
                         </div>
 
-                        <form className="bg-[#ffffff]">
-                            <div className="w-[85%] mx-auto border-gray-900/10 pb-8 font-mulish">
-                                <div className="mt-10 grid grid-cols-3 gap-x-2  w-full">
+                        <form className="bg-[#ffffff] lg:mx-0 md:mx-0 mx-[5px]">
+                            <div className="lg:w-[85%] w-full lg:mx-0 mx-auto border-gray-900/10 pb-8 font-mulish">
+                                <div className="mt-10 grid grid-cols-3 lg:gap-x-2 gap-x-0 mx-[30px] lg:w-full w-[90%]">
                                     <div className="">
                                         <label className="block text-sm/6 font-medium text-gray-900">From</label>
                                         <div className="mt-2">
                                             <input
                                                 type="text"
                                                 value={fromLocation}
-                                                className="block w-[200px] rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                                className="block lg:w-[200px] md:w-[200px] w-[150px] rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                                                 onChange={handleFromLocationChange}
                                             />
                                         </div>
                                     </div>
 
-                                    <img src={arrangeHorizontal} alt="" className="mt-10 ml-16 cursor-pointer" onClick={handleChangeLocation} />
+                                    <img src={arrangeHorizontal} alt="" className="mt-10 lg:ml-16 md:mx-16 mx-10 h-6 z-10 w-6 cursor-pointer" onClick={handleChangeLocation} />
 
                                     <div className="-ml-[50px]">
                                         <label className="block text-sm/6 font-medium text-gray-900">To</label>
@@ -136,19 +136,19 @@ const MainLayout = () => {
                                             <input
                                                 type="text"
                                                 value={toLocation}
-                                                className="block w-[200px] rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                                className="block lg:w-[200px] md:w-[200px] w-[150px] rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                                                 onChange={handleToLocationChange}
                                             />
                                         </div>
                                     </div>
 
-                                    <div className="sm:col-span-4 w-full mt-4">
+                                    <div className="sm:col-span-4 lg:w-full mt-4">
                                         <label className="block text-sm/6 font-medium text-gray-900">Departure date</label>
-                                        <div className="mt-2">
+                                        <div className="mt-2 items-center justify-center">
                                             <input
                                                 type="date"
                                                 value={departureDate}
-                                                className="block w-[430px] rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                                                className="block lg:w-[430px] md:w-[480px] w-[300px] rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                                                 onChange={handleDepartureDateChange}
                                             />
                                         </div>
@@ -156,7 +156,7 @@ const MainLayout = () => {
                                 </div>
                             </div>
 
-                            <div className="my-2 flex items-center justify-center gap-x-6 ml-16 w-[81%]">
+                            <div className="my-2 flex items-center justify-center gap-x-6 lg:ml-16 mx-auto lg:w-[81%] w-[50%]">
                                 <button
                                     type="button"
                                     className="text-sm/6 font-sm font-mulish w-full py-3 border rounded-xl bg-[#102751] text-white"
