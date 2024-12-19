@@ -1,14 +1,15 @@
-import CompareBus from './home/CompareBus'
+import CompareBus from './home/CompareBus.tsx'
 import { FormEvent, useState } from "react"
 import WindowImg from "../assets/window.png"
 import Users from "../assets/Vector.png"
 import VectorImg from "../assets/Vector (5).png"
 import arrangeHorizontal from "../assets/arrangehorizontalcircle.png"
-import TravelTips from './home/TravelTips'
+import TravelTips from './home/TravelTips.tsx'
 import Footer from './Footer'
 import toast from 'react-hot-toast'
 import Header from './Header'
-import fetchRidesData from '../services/getRides'
+import fetchRidesData from '../services/getRides.tsx'
+import Spinner from './Spinner'
 
 const MainLayout = () => {
     const [fromLocation, setFromLocation] = useState('')
@@ -21,6 +22,7 @@ const MainLayout = () => {
         errMessage: ''
     })
     const [ridesAreAvailable, setRidesAreAvailable] = useState(false)
+    const [btnLoadingState, setBtnLoadingState] = useState(true)
 
     const API_URL = `https://sandbox.myt40.com/api/v1/retailer/connections/find`
     const TOKEN = "pk_$2y$10$GzjIderiZcRDLnqtwhCCZu.U1TlQ4S.PtZIxeNMLu/ywoYioDWEGS"
@@ -47,6 +49,8 @@ const MainLayout = () => {
         e.preventDefault()
         console.log(fromLocation, toLocation, departureDate)
 
+        setBtnLoadingState(false)
+
         if (!fromLocation || !toLocation || !departureDate) {
             toast.error("Kindly enter valid Locations and Departure Date")
             return
@@ -57,20 +61,24 @@ const MainLayout = () => {
                 setRideInfo(data)
                 setRidesAreAvailable(true)
                 toast.success(data?.data.length + " " + data.message)
+                setBtnLoadingState(true)
             })
             .catch((error: unknown) => {
                 if (error instanceof Error) {
                     console.error("Error occurred:", error.message);
                     setRidesAreAvailable(false)
                     toast.error(error.message === 'failed to fetch' ? error.message + ": Kindly check that you are connected to the Internet" : error.message + " with different locations and a future date")
+                    setBtnLoadingState(true)
                 }
             })
+
+
     }
 
     return (
-        <>
+        <div className='max-w-full overflow-hidden w-full'>
             <Header />
-            <div className="mx-[85px] w-full grid grid-cols-2 justify-between gap-x-48 my-8">
+            <div className="lg:mx-[85px] md:mx-[20px] lg:w-[90%] w-full grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 my-8 gap-y-8 justify-between lg:gap-x-64 md:gap-x-24 gap-x-12">
                 <div>
                     <h1 className="font-mulish font-bold text-5xl w-[450px] word-spacing-[0.5rem]">
                         Buy <span className="text-indigo">cheap</span><br /> bus tickets online in Nigeria
@@ -80,7 +88,7 @@ const MainLayout = () => {
                         Book bus tickets for all interstate <br /> travels in Nigeria
                     </p>
                 </div>
-                <div className="border bg-blue rounded-2xl w-[500px] border-[#e5e7eb]">
+                <div className="border bg-blue rounded-2xl w-[98%] mx-auto border-[#e5e7eb]">
                     <div className="bg-blue rounded-t-2xl border-0 text-white w-full text-center py-4 font-mulish ">
                         <div className="flex gap-3 justify-center">
                             <img src={WindowImg} alt="window" width='18px' height="5px" />
@@ -154,7 +162,7 @@ const MainLayout = () => {
                                     className="text-sm/6 font-sm font-mulish w-full py-3 border rounded-xl bg-[#102751] text-white"
                                     onClick={handleGetRides}
                                 >
-                                    Submit
+                                    {!btnLoadingState ? <Spinner /> : "Submit"}
                                 </button>
                             </div>
                         </form>
@@ -165,7 +173,7 @@ const MainLayout = () => {
             <CompareBus rideInfo={rideInfo} ridesAreAvailable={ridesAreAvailable} />
             <TravelTips />
             <Footer />
-        </>
+        </div>
     )
 }
 

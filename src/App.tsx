@@ -4,7 +4,7 @@ import MainLayout from './components/MainLayout'
 
 function App() {
   return (
-    <div className='max-w-[1280px]'>
+    <div>
       <MainLayout />
       <Toaster />
     </div>
