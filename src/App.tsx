@@ -1,13 +1,13 @@
 import './App.css'
-import Hero from './components/home/Hero'
+import { Toaster } from 'react-hot-toast'
 import MainLayout from './components/MainLayout'
 
 function App() {
-
   return (
-    <MainLayout>
-      <Hero />
-    </MainLayout>
+    <div className='max-w-[1280px]'>
+      <MainLayout />
+      <Toaster />
+    </div>
   )
 }
 
