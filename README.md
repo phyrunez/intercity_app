@@ -1,50 +1,46 @@
-# React + TypeScript + Vite
+# REACT + TYPESCRIPT + VITE
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Prequisite
 
-Currently, two official plugins are available:
+Make sure you have Node.js(version 16+ recommended) installed using npm or yarn
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Setup Instructions
 
-## Expanding the ESLint configuration
+The following Setup instruction was used for specifically for the app as it was built using vite
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+=> Run npm create vite@latest Intercity --template react-ts  
+=> chnage directory to project using "cd Intercity"
+=> Install dependency using "npm install"
+=> Run the Application using "npm run dev"
 
-- Configure the top-level `parserOptions` property like this:
+### Initialized a Git Repository
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+After the Project has been created successfully, I also created a remote repository on Github where I can push my code. I ran the following command after the Repo was created:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+=> git init
+=> git add .
+=> git commit -m "-- message ---"
+=> git branch -M main
+=> git remote add origin "--- url to remote repo ---"
+=> git push -u origin main
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+#### Installing Dependencies
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+I installed the following dependencies using "npm install -- dependency_name ---" command
+
+=> Tailwindcss, A CSS framework for making the look better UI
+=> react-hot-toast for display different message with regards the Application state to the user
+
+##### Running the Application Locally
+
+To do this, Just use the link "http://localhost:5173" on your browser
+
+###### Building for production
+
+I used the command "npm run build" on my command prompt to build locally first, then the dist folder created at the root of my Project was used to build the application on Netlify
+
+The Application is Live and you can access it using "https://intercity-clone.netlify.app
+
+###### Approach to challenge
+
+I used the browser log (console.log) for debugging and the API Docs also helpful

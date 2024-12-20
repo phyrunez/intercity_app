@@ -60,7 +60,7 @@ const CompareBus = ({ rideInfo, ridesAreAvailable }: Props) => {
                     For bookings, easily compare schedules <br /> bus operators, and pricing
                 </span>
             </div>
-            <div className={`border rounded-lg lg:w-[89%] md:w-[89%] w-full py-16 px-16 ${ridesAreAvailable && 'h-[500px] overflow-y-scroll'}`}>
+            <div className={`border rounded-lg lg:w-[89%] md:w-[89%] w-full py-16 lg:px-16 md:px-14 px-5 ${ridesAreAvailable && 'h-[500px] overflow-y-scroll'}`}>
                 {ridesAreAvailable ? (
                     rideInfo?.data.map(d => {
                         return (
